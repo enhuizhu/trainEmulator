@@ -1,0 +1,14 @@
+{
+  "name": "trainEmulator",
+  "version": "0.0.0",
+  "authors": [
+    "enhuizhu"
+  ],
+  "license": "MIT",
+  "homepage": "http://www.olmarket.co.uk",
+  "dependencies": {
+    "d3": "~4.1.0",
+    "angular": "~1.5.7",
+    "angular-mocks": "~1.5.7"
+  }
+}
