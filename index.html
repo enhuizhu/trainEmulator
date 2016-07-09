@@ -2,16 +2,28 @@
 <html>
 	<head>
 		<title>Train Emulator</title>
+		<link rel="stylesheet" type="text/css" href="./app/styles/style.css">
 	</head>
 	<body ng-app="trainApp" ng-controller="main">
 		<train-svg data="data" config="config"></train-svg>
 		
-
+		<!-- vendor -->
 		<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
 		<script type="text/javascript" src="bower_components/d3/d3.min.js"></script>
+		<script type="text/javascript" src="bower_components/underscore/underscore-min.js"></script>
 		<script type="text/javascript" src="common/shareModule.js"></script>
+		
+		<!-- directive -->
+		<script type="text/javascript" src="common/directive/trainRoute.js"></script>
 		<script type="text/javascript" src="common/directive/trainPath.js"></script>
+		<script type="text/javascript" src="common/directive/point.js"></script>
+		<script type="text/javascript" src="common/directive/movingPoint.js"></script>
+		
+		<!-- service -->
 		<script type="text/javascript" src="common/services/helper.js"></script>
+		<script type="text/javascript" src="common/services/svgScale.js"></script>
+		
+		<!-- app -->
 		<script type="text/javascript" src="app/app.js"></script>
 		<script type="text/javascript" src="app/controllers/main.js"></script>
 		<script type="text/javascript" src="app/directives/trainSvg.js"></script>

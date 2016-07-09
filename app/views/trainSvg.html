@@ -1,3 +1,4 @@
-<svg>
-	 <train-path data="data" config="config"></train-path>
+<svg ng-attr-width="{{svgSize.width}}" ng-attr-height="{{svgSize.height}}" style="width:{{svgSize.width}}px; height:{{svgSize.height}}px">
+	 <train-route data="data" stop-time="trainStopTime" config="config"></train-route>
+ 	 <train-route data="data2" stop-time="trainStopTime" config="config2"></train-route>
 </svg>

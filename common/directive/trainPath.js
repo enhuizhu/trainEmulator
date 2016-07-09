@@ -1,24 +1,20 @@
 'use strict';
 
-angular.module("share.module").directive("trainPath", function(helper) {
+angular.module("share.module").directive("trainPath", function(helper, svgScale) {
 	return {
 		restrict: "AE",
 		replace: true,
-		templateUrl: "./common/views/trainPath.html",
+		template: "<svg><g><path></path></g></svg>",
 		scope: {
 			data: "=",
 			config: "=?"
-		},
-
-		controller: function() {
-		
 		},
 
 		link: function(scope, element, attrs) {
 			if (attrs.test) {
 				var newElement = element.find("path");
 			}else{
-				var newElement = helper.getSvgChild(element, attrs);
+				var newElement = helper.getSvgChild(element, attrs)[0].querySelectorAll("path");
 			}
 
 			var obj = {
@@ -29,9 +25,13 @@ angular.module("share.module").directive("trainPath", function(helper) {
 
 				line: (function(){
 					var func = d3.line()
-						.x(function(d) { return d.x; })
-						.y(function(d) { return d.y; })
-                      
+						.x(function(d) { 
+							return svgScale.getScaleX()(d.x); 
+						})
+						.y(function(d) { 
+							return svgScale.getScaleY()(d.y); 
+						})
+                 
 					return func;
 				})(),
 
