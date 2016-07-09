@@ -29,8 +29,8 @@ angular.module("share.module").directive("trainPath", function(helper) {
 
 				line: (function(){
 					var func = d3.line()
-                       	.x(function(d) { return d.x; })
-                       	.y(function(d) { return d.y; })
+						.x(function(d) { return d.x; })
+						.y(function(d) { return d.y; })
                       
 					return func;
 				})(),
