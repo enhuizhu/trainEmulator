@@ -4,17 +4,16 @@
 		<title>Train Emulator</title>
 	</head>
 	<body ng-app="trainApp" ng-controller="main">
-		<train-path></train-path>
+		<train-svg data="data" config="config"></train-svg>
 		
+
 		<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
 		<script type="text/javascript" src="bower_components/d3/d3.min.js"></script>
-		<script type="text/javascript" src="scripts/shareModule.js"></script>
-		<script type="text/javascript" src="scripts/directive/trainPath.js"></script>
-		<script type="text/javascript" src="app.js"></script>
-		<script type="text/javascript">
-			angular.module("trainApp").controller("main", function() {
-
-			});
-		</script>
+		<script type="text/javascript" src="common/shareModule.js"></script>
+		<script type="text/javascript" src="common/directive/trainPath.js"></script>
+		<script type="text/javascript" src="common/services/helper.js"></script>
+		<script type="text/javascript" src="app/app.js"></script>
+		<script type="text/javascript" src="app/controllers/main.js"></script>
+		<script type="text/javascript" src="app/directives/trainSvg.js"></script>
 	</body>
 </html>

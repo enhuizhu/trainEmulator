@@ -7,6 +7,8 @@ module.exports = function(config) {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
 
+    plugins:['karma-ng-html2js-preprocessor','ng-html2js', 'karma-phantomjs-launcher', 'karma-jasmine', 'karma-chrome-launcher'],
+
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
@@ -19,11 +21,12 @@ module.exports = function(config) {
       'bower_components/angular/angular.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/d3/d3.js',
-      'scripts/*.js',
-      'scripts/**/*.js',
+      'common/*.js',
+      'common/**/*.js',
       'tests/*.js',
       'tests/**/*.js',
-      'tests/**/**/*.js'
+      'tests/**/**/*.js',
+      'common/views/*.html',
     ],
 
 
@@ -35,7 +38,22 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'common/views/*.html': ['ng-html2js']
     },
+
+    ngHtml2JsPreprocessor: {
+        cacheIdFromPath: function(filepath) {
+            // example strips 'public/' from anywhere in the path
+            // module(app/templates/template.html) => app/public/templates/template.html
+            // var cacheId = filepath.strip('public/', '');
+            var newPath = "./" + filepath;
+            console.info("new path", newPath);
+            return newPath;
+        },
+
+        moduleName: 'main'
+    },
+
 
 
     // test results reporter to use
@@ -63,8 +81,8 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
-    // browsers: ['PhantomJS'],
+    // browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
