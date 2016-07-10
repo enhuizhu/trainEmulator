@@ -18,6 +18,10 @@ After your start the server, visit http://127.0.0.1:8080, you should be able see
 npm test
 ```
 
+###4. app screen short###
+
+![alt text](screenShort/train.jpg "Train App")
+
 
 
 

@@ -2,8 +2,8 @@
 
 angular.module("trainApp").controller("main", function($scope, svgScale, trainSpeed) {
 
-	var speed = 300,
-		speedFaster = 500;
+	var speed = 200,
+		speedFaster = 400;
 
 	this.$ = $scope;
 	this.$.speed = speed;
