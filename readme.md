@@ -20,7 +20,7 @@ npm test
 
 ###4. app screen short###
 
-![alt text](screenShort/train.jpg "Train App")
+![alt text](./screenShort/train.png "Train App")
 
 
 
