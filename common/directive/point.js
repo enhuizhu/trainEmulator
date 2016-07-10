@@ -57,12 +57,17 @@ angular.module("share.module").directive("point", function(svgScale) {
 					//get text width 
 					var textWidth = this.text.node().getBBox().width,
 						scaleX = svgScale.getScaleX(),
-						currentX = scaleX(x + this.config.r + 2);
+						currentX = scaleX(x) + this.config.r + 2,
+						range = scaleX.range(),
+						maxX = d3.max(range),
+						minX = d3.min(range);
 
-					if(currentX + textWidth > d3.max(svgScale.getScaleX().range())){
+					if(currentX + textWidth > maxX){
 						currentX = scaleX(x) - this.config.r - textWidth - 2;
+					}else if(currentX < minX) {
+						currentX = minX;
 					}
-
+					
 					return currentX;
 				},
 

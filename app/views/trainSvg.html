@@ -1,4 +1,3 @@
-<svg ng-attr-width="{{svgSize.width}}" ng-attr-height="{{svgSize.height}}" style="width:{{svgSize.width}}px; height:{{svgSize.height}}px">
-	 <train-route data="data" stop-time="trainStopTime" config="config"></train-route>
- 	 <train-route data="data2" stop-time="trainStopTime" config="config2"></train-route>
+<svg ng-attr-width="{{config.svgSize.width}}" ng-attr-height="{{config.svgSize.height}}" style="width:{{config.svgSize.width}}px; height:{{config.svgSize.height}}px">
+	 <train-route data="d.data" stop-time="d.trainStopTime" config="d.pathConfig" interval-time="d.trainIntervalTime" ng-repeat="d in config.datas"></train-route>
 </svg>

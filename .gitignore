@@ -1,4 +1,9 @@
 bower_components/
 node_modules/
 .DS_Store
+**/.DS_Store
 npm-debug.log
+.sass-cache
+*.sass-cache
+**/.sass-cache
+app/styles/.sass-cache

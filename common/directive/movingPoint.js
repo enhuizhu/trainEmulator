@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module("share.module").directive("movingPoint", function(helper, svgScale) {
+angular.module("share.module").directive("movingPoint", function(helper, svgScale, timeHelper, $timeout) {
 	return {
 		restrict: "AE",
 		replace: true,
@@ -8,7 +8,8 @@ angular.module("share.module").directive("movingPoint", function(helper, svgScal
 		scope: {
 			data: "=",
 			config: "=?",
-			stopTime: "=?"
+			stopTime: "=?",
+			startTime: "=?"
 		},
 		link: function(scope, element, attrs) {
 			var newElement = helper.getSvgChild(element, attrs)[0].querySelectorAll("circle");
@@ -42,7 +43,15 @@ angular.module("share.module").directive("movingPoint", function(helper, svgScal
 						return d.x;
 					});
 
-					this.animateIterate(0, data, false);
+					if (scope.startTime) {
+						var that = this;
+						
+						$timeout(function() {
+							that.animateIterate(0, data, false);
+						}, scope.startTime * 1000);
+					}else{
+						this.animateIterate(0, data, false);
+					}
 				},
 
 				animateIterate: function(index, data, isBack) {
@@ -61,10 +70,7 @@ angular.module("share.module").directive("movingPoint", function(helper, svgScal
 				},
 
 				getDuration: function(start, end, speed) {
-					var dis = Math.round(Math.sqrt(Math.pow(start.x - end.x, 2) + Math.pow(start.y - end.y,2))),
-						t = Math.round(dis/speed);
-					
-					return t * 1000;
+					return timeHelper.getDurationBetweenTwoStops(start, end, speed) * 1000;
 				},
 
 				getStopTime: function() {

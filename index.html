@@ -3,11 +3,54 @@
 	<head>
 		<title>Train Emulator</title>
 		<link rel="stylesheet" type="text/css" href="./app/styles/style.css">
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+		<!-- Latest compiled and minified JavaScript -->
 	</head>
 	<body ng-app="trainApp" ng-controller="main">
-		<train-svg data="data" config="config"></train-svg>
+		<div class="container app">
+			
+			<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title">Train Emulator config</h4>
+			      </div>
+			      <div class="modal-body">
+			         <ul>
+			         	<li>Regular speed: {{speed}} m/s</li>
+			         	<li>Faster speed: {{speedFaster}} m/s</li>
+			         	<li>Train stop duration: {{trainStopTime}} seconds</li>
+			         	<li>Interval between trains: {{trainIntervalTime}} seconds</li>
+			         	<li>
+			         		Model:<br>
+			         		<code>
+			         			{{model}}
+			         		</code>
+			         	</li>
+			         </ul>
+
+
+
+			      </div>
+			    </div><!-- /.modal-content -->
+			  </div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+			
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+				check train emulator configuration
+			</button>
+
+			<p>&nbsp;</p>
+			
+			<train-svg data="data" config="config"></train-svg>
+		</div>
 		
 		<!-- vendor -->
+		<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
 		<script type="text/javascript" src="bower_components/d3/d3.min.js"></script>
 		<script type="text/javascript" src="bower_components/underscore/underscore-min.js"></script>
@@ -22,6 +65,8 @@
 		<!-- service -->
 		<script type="text/javascript" src="common/services/helper.js"></script>
 		<script type="text/javascript" src="common/services/svgScale.js"></script>
+		<script type="text/javascript" src="common/services/timeHelper.js"></script>
+		<script type="text/javascript" src="common/services/trainSpeed.js"></script>
 		
 		<!-- app -->
 		<script type="text/javascript" src="app/app.js"></script>

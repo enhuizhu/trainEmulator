@@ -60,7 +60,7 @@ angular.module("share.module").directive("trainPath", function(helper, svgScale)
 						}catch(e) {
 
 						};
-					});
+					}, true);
 				}
 			};
 

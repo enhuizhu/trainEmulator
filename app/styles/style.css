@@ -1,6 +1,18 @@
+.app {
+  margin-top: 10px;
+  width: 970px !important; }
+
+ul {
+  margin-left: -40px;
+  list-style: none; }
+
 svg {
   width: 100%;
   height: 100%;
-  position: absolute; }
+  display: block;
+  margin-left: auto;
+  margin-right: auto; }
+  svg text {
+    font-size: 10px; }
 
 /*# sourceMappingURL=style.css.map */
