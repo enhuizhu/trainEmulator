@@ -14,5 +14,7 @@ svg {
   margin-right: auto; }
   svg text {
     font-size: 10px; }
+  svg .hide {
+    display: "none"; }
 
 /*# sourceMappingURL=style.css.map */

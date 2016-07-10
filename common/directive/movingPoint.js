@@ -4,7 +4,7 @@ angular.module("share.module").directive("movingPoint", function(helper, svgScal
 	return {
 		restrict: "AE",
 		replace: true,
-		template:"<svg><g><circle class='move-p'></circle></g><svg>",
+		template:"<svg><g><circle class='move-p hide'></circle></g><svg>",
 		scope: {
 			data: "=",
 			config: "=?",
@@ -85,6 +85,7 @@ angular.module("share.module").directive("movingPoint", function(helper, svgScal
 					this.movingPoint
 						.attr("cx", svgScale.getScaleX()(start.x))
 						.attr("cy", svgScale.getScaleY()(start.y))
+						.classed("hide", false)
 						.transition()
 							.delay(this.getStopTime() * 1000)
 							.duration(this.getDuration(start, end, start.v))
