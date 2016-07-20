@@ -9,9 +9,12 @@ angular.module("share.module").directive("movingPoint", function(helper, svgScal
 			data: "=",
 			config: "=?",
 			stopTime: "=?",
-			startTime: "=?"
+			startTime: "=?",
+			scaleId: "="
 		},
 		link: function(scope, element, attrs) {
+			var newScale = svgScale.get(scope.scaleId);
+
 			var newElement = helper.getSvgChild(element, attrs)[0].querySelectorAll("circle");
 			
 			var obj = {
@@ -70,7 +73,7 @@ angular.module("share.module").directive("movingPoint", function(helper, svgScal
 				},
 
 				getDuration: function(start, end, speed) {
-					return timeHelper.getDurationBetweenTwoStops(start, end, speed) * 1000;
+					return timeHelper.getDurationBetweenTwoStops(start, end, speed, scope.scaleId) * 1000;
 				},
 
 				getStopTime: function() {
@@ -83,16 +86,16 @@ angular.module("share.module").directive("movingPoint", function(helper, svgScal
 
 				animateWithSingleData: function(start, end, cb) {
 					this.movingPoint
-						.attr("cx", svgScale.getScaleX()(start.x))
-						.attr("cy", svgScale.getScaleY()(start.y))
+						.attr("cx", newScale.getScaleX()(start.x))
+						.attr("cy", newScale.getScaleY()(start.y))
 						.classed("hide", false)
 						.transition()
 							.delay(this.getStopTime() * 1000)
 							.duration(this.getDuration(start, end, start.v))
 							.on("end", cb)
 							.ease(d3.easeLinear)
-							.attr("cx", svgScale.getScaleX()(end.x))
-							.attr("cy", svgScale.getScaleY()(end.y));
+							.attr("cx", newScale.getScaleX()(end.x))
+							.attr("cy", newScale.getScaleY()(end.y));
 							
 				},
 

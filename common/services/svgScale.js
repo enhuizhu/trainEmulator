@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module("share.module").service("svgScale", function() {
-	return {
+	var obj = {
 		setScaleX: function(data, margin, width) {
 			var maxX = d3.max(data, function(d) {
 				return d.x;
@@ -10,6 +10,8 @@ angular.module("share.module").service("svgScale", function() {
 			var minX = d3.min(data, function(d) {
 				return d.x;
 			});
+
+			console.info("minX", minX);
 
 			this.scaleX = d3.scaleLinear()
 				.range([margin, width - margin])
@@ -36,6 +38,20 @@ angular.module("share.module").service("svgScale", function() {
 
 		getScaleY: function() {
 			return this.scaleY;
+		}
+	};
+
+	var scales = {
+
+	}
+
+	return {
+		get: function(id) {
+			if (!scales[id]) {
+				scales[id] = Object.create(obj);
+			}
+
+			return scales[id];
 		}
 	}
 });

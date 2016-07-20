@@ -2,7 +2,7 @@
 
 angular.module("share.module").service("timeHelper", function(svgScale) {
 	return {
-		getTrainNumbers: function(trainTimeInterval, dataset, trainStopTime) {
+		getTrainNumbers: function(trainTimeInterval, dataset, trainStopTime, scaleId) {
 			var sortedDataSet = _.sortBy(dataset, function(d) {
 					return d.x;
 				});
@@ -12,7 +12,7 @@ angular.module("share.module").service("timeHelper", function(svgScale) {
 			for(var i=0; i < sortedDataSet.length - 1; i++) {
 				var d = sortedDataSet[i],
 					endD = sortedDataSet[i+1],
-					t = this.getDurationBetweenTwoStops(d, endD, d.v);
+					t = this.getDurationBetweenTwoStops(d, endD, d.v, scaleId);
 
 				sumT += t + trainStopTime;
 			}
@@ -20,9 +20,11 @@ angular.module("share.module").service("timeHelper", function(svgScale) {
 			return Math.floor(sumT * 2 / trainTimeInterval);
 		},
 
-		getDurationBetweenTwoStops: function(start, end, speed) {
-			var scaleX = svgScale.getScaleX(),
-				scaleY = svgScale.getScaleY(),
+		getDurationBetweenTwoStops: function(start, end, speed, scaleId) {
+			var newScale = svgScale.get(scaleId);
+
+			var scaleX = newScale.getScaleX(),
+				scaleY = newScale.getScaleY(),
 				startX = scaleX(start.x),
 				startY = scaleY(start.y),
 				endX = scaleX(end.x),

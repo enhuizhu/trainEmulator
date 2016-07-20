@@ -7,10 +7,13 @@ angular.module("share.module").directive("trainPath", function(helper, svgScale)
 		template: "<svg><g><path></path></g></svg>",
 		scope: {
 			data: "=",
-			config: "=?"
+			config: "=?",
+			scaleId: "="
 		},
 
 		link: function(scope, element, attrs) {
+			var newScale = svgScale.get(scope.scaleId);
+
 			if (attrs.test) {
 				var newElement = element.find("path");
 			}else{
@@ -26,10 +29,10 @@ angular.module("share.module").directive("trainPath", function(helper, svgScale)
 				line: (function(){
 					var func = d3.line()
 						.x(function(d) { 
-							return svgScale.getScaleX()(d.x); 
+							return newScale.getScaleX()(d.x); 
 						})
 						.y(function(d) { 
-							return svgScale.getScaleY()(d.y); 
+							return newScale.getScaleY()(d.y); 
 						})
                  
 					return func;

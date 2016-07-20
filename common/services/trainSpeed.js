@@ -2,13 +2,15 @@
 
 angular.module("share.module").service("trainSpeed", function(svgScale) {
 	return {
-		convertTrainSpeedToPx: function(trainSpeed) {
+		convertTrainSpeedToPx: function(trainSpeed, scaleId) {
+			var newScale = svgScale.get(scaleId);
+
 			var latitudeZeroToOne = 111*1000,
 				latitudeSpeed = 1 / (latitudeZeroToOne / trainSpeed);
 			/**
 			* tranin speed is n m/second
 			**/
-			var scaleX = svgScale.getScaleX(),
+			var scaleX = newScale.getScaleX(),
 				domain = scaleX.domain(),
 				range = scaleX.range(),
 				domainDis = Math.abs(domain[0] - domain[1]),

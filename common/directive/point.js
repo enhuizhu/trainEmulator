@@ -10,11 +10,13 @@ angular.module("share.module").directive("point", function(svgScale) {
 			'</g>',
 		scope: {
 			data: "=",
-			config: "=?"
+			config: "=?",
+			scaleId: "="
 		},
 
 		link: function(scope, element, attrs) {
-			
+			var newScale = svgScale.get(scope.scaleId);
+
 			var obj = {
 				point: d3.select(element[0]).select(".in-circle"),
 				text: d3.select(element[0]).select("text"),
@@ -56,7 +58,7 @@ angular.module("share.module").directive("point", function(svgScale) {
 				getTextXpos: function(x) {
 					//get text width 
 					var textWidth = this.text.node().getBBox().width,
-						scaleX = svgScale.getScaleX(),
+						scaleX = newScale.getScaleX(),
 						currentX = scaleX(x) + this.config.r + 2,
 						range = scaleX.range(),
 						maxX = d3.max(range),
@@ -76,11 +78,11 @@ angular.module("share.module").directive("point", function(svgScale) {
 					
 					scope.$watch("data", function(newV, oldV) {
 						that.point
-							.attr("cx", svgScale.getScaleX()(newV.x))
-							.attr("cy", svgScale.getScaleY()(newV.y));
+							.attr("cx", newScale.getScaleX()(newV.x))
+							.attr("cy", newScale.getScaleY()(newV.y));
 
 						that.text
-							.attr("y", svgScale.getScaleY()(newV.y))
+							.attr("y", newScale.getScaleY()(newV.y))
 							.text(newV.text)
 							.attr("x", that.getTextXpos(newV.x))
 

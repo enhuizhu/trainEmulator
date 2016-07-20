@@ -48,18 +48,10 @@ angular.module("trainApp").controller("main", function($scope, svgScale, trainSp
 		{x:-0.0997, y:51.4944, v:speedFaster, "text": "Elephant & Castle"},
 	];
 
-	this.$.model = this.bakerlooLine;
-
-
-	svgScale.setScaleX(this.bakerlooLine, this.config.margin, this.$.svgSize.width);
-	svgScale.setScaleY(this.bakerlooLine, this.config.margin, this.$.svgSize.height);
-
-	_.each(this.bakerlooLine, function(item, k) {
-		item.v = trainSpeed.convertTrainSpeedToPx(item.v);
-	});
-
 	this.$.config = {
 		svgSize: this.$.svgSize,
+		margin: this.config.margin,
+		convertSpeed: true,
 		datas: [
 			{
 				data: this.bakerlooLine,
@@ -74,7 +66,11 @@ angular.module("trainApp").controller("main", function($scope, svgScale, trainSp
 		]
 	};
 
+
+	// var speed = 10,
+	// 	speedFaster = 20;
 	// this.$.data = [ 
+
 	// 	{ "x": 1,   "y": 5, v: speed, "text": "stop1"},  { "x": 20,  "y": 20, v: speed, "text": "stop2"},
  //        { "x": 40,  "y": 10, v: speed, "text": "stop3"}, { "x": 60,  "y": 40, v: speed, "text": "stop4"},
  //        { "x": 80,  "y": 5, v: speedFaster, "text": "stop5"},  { "x": 100, "y": 60, v: speedFaster, "text": "stop6"},
@@ -88,8 +84,9 @@ angular.module("trainApp").controller("main", function($scope, svgScale, trainSp
  //        { "x": 450,  "y": 100, v: speedFaster, "text": "stop7"},  { "x": 500, "y": 300, v: speedFaster, "text": "stop8"},
 	// ];
 
-	// this.$.config = {
+	// this.$.config2 = {
 	// 	svgSize: this.$.svgSize,
+	// 	margin: this.config.margin,
 	// 	datas: [
 	// 		{
 	// 			data: this.$.data,
@@ -98,7 +95,8 @@ angular.module("trainApp").controller("main", function($scope, svgScale, trainSp
 	// 				strokeWidth: "2",
 	// 				fill: "none"
 	// 			},
-	// 			trainStopTime: 2
+	// 			trainStopTime: 2,
+	// 			trainIntervalTime: 5,
 	// 		},
 
 	// 		{
@@ -108,7 +106,8 @@ angular.module("trainApp").controller("main", function($scope, svgScale, trainSp
 	// 				strokeWidth: "2",
 	// 				fill: "none"
 	// 			},
-	// 			trainStopTime: 2
+	// 			trainStopTime: 2,
+	// 			trainIntervalTime: 5,
 	// 		}
 	// 	]
 	// };
